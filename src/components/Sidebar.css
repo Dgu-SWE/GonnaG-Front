@@ -5,6 +5,7 @@
 .sidebar {
   width: 260px;
   min-width: 260px;
+  max-height: calc(100vh - 20px);
   background-color: #ff8a00;
   color: #fff;
   display: flex;
@@ -12,6 +13,9 @@
   gap: 24px;
   padding: 28px 20px;
   border-radius: 20px;
+  position: sticky;
+  top: 10px;
+  align-self: flex-start;
 }
 
 .sidebar__profile {

@@ -16,8 +16,8 @@ body {
 }
 
 .app-shell {
-  min-height: 100%;
-  padding: 40px;
+  min-height: 100vh;
+  padding: 0;
   background: linear-gradient(135deg, #f9f7f4 0%, #f4f6ff 100%);
 }
 
@@ -26,6 +26,9 @@ body {
   gap: 32px;
   max-width: 1200px;
   margin: 0 auto;
+  align-items: flex-start;
+  padding: 10px 10px 0 10px;
+  min-height: 100vh;
 }
 
 .page-content {
@@ -37,6 +40,27 @@ body {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  height: calc(100vh - 20px);
+  max-height: calc(100vh - 20px);
+  overflow-y: auto;
+}
+
+.page-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.page-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.page-content::-webkit-scrollbar-thumb {
+  background: #ff8a00;
+  border-radius: 4px;
+}
+
+.page-content::-webkit-scrollbar-thumb:hover {
+  background: #e67d00;
 }
 
 .page-header {
@@ -78,18 +102,65 @@ body {
   color: #333;
 }
 
+.table-wrapper {
+  margin-top: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e6e6e6;
+}
+
+.table tbody::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table tbody::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.table tbody::-webkit-scrollbar-thumb {
+  background: #ff8a00;
+  border-radius: 4px;
+}
+
+.table tbody::-webkit-scrollbar-thumb:hover {
+  background: #e67d00;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 16px;
-  overflow: hidden;
   background-color: #fff;
+  display: table;
 }
 
 .table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table tbody {
+  display: block;
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+.table thead th {
   background-color: #f8f0ff;
   font-weight: 600;
   color: #51368a;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ececec;
+  font-size: 14px;
+}
+
+.table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
 .table th,

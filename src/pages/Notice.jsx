@@ -28,46 +28,50 @@ const Notice = () => {
 
         <section className="page-card">
           <h2 className="page-card__title">중요 공지</h2>
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">번호</th>
-                <th scope="col">제목</th>
-                <th scope="col">날짜</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pinnedNotices.map((notice) => (
-                <tr key={notice.id}>
-                  <td>{notice.id}</td>
-                  <td>{notice.title}</td>
-                  <td>{notice.date}</td>
+          <div className="table-wrapper">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">번호</th>
+                  <th scope="col">제목</th>
+                  <th scope="col">날짜</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {pinnedNotices.map((notice) => (
+                  <tr key={notice.id}>
+                    <td>{notice.id}</td>
+                    <td>{notice.title}</td>
+                    <td>{notice.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section className="page-card">
           <h2 className="page-card__title">조회수 TOP</h2>
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">조회수</th>
-                <th scope="col">제목</th>
-                <th scope="col">날짜</th>
-              </tr>
-            </thead>
-            <tbody>
-              {popularNotices.map((notice) => (
-                <tr key={notice.id}>
-                  <td>{notice.views}</td>
-                  <td>{notice.title}</td>
-                  <td>{notice.date}</td>
+          <div className="table-wrapper">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">조회수</th>
+                  <th scope="col">제목</th>
+                  <th scope="col">날짜</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {popularNotices.map((notice) => (
+                  <tr key={notice.id}>
+                    <td>{notice.views}</td>
+                    <td>{notice.title}</td>
+                    <td>{notice.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
       </section>
     </div>
