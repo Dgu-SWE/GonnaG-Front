@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main';
 import History from './pages/History';
 import Notice from './pages/Notice';
@@ -14,7 +14,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/history" element={<History />} />
           <Route path="/notice" element={<Notice />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/signin" element={<Signin />} />
         </Routes>
       </div>
     </Router>

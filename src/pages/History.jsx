@@ -22,9 +22,9 @@ const completionGroups = [
     rows: [
       { course: '데이터베이스', year: '2학년', semester: '2학기', credits: 3, status: '이수' },
       { course: '알고리즘', year: '3학년', semester: '2학기', credits: 3, status: '이수' },
-      { course: '머신러닝', year: '4학년', semester: '1학기', credits: 3, status: '계획' },
+      { course: '머신러닝', year: '4학년', semester: '1학기', credits: 3, status: '미이수' },
       { course: '캡스톤디자인', year: '4학년', semester: '2학기', credits: 3, status: '미이수' },
-      { course: '클라우드컴퓨팅', year: '4학년', semester: '1학기', credits: 3, status: '계획' },
+      { course: '클라우드컴퓨팅', year: '4학년', semester: '1학기', credits: 3, status: '미이수' },
       { course: '빅데이터분석', year: '3학년', semester: '2학기', credits: 3, status: '미이수' },
     ],
   },
@@ -36,7 +36,7 @@ const completionGroups = [
       { course: '자아와명상1', year: '1학년', semester: '1학기', credits: 1, status: '이수' },
       { course: '글쓰기와토론', year: '1학년', semester: '1학기', credits: 2, status: '이수' },
       { course: '동국인의리더십', year: '1학년', semester: '2학기', credits: 2, status: '이수' },
-      { course: 'AI윤리', year: '2학년', semester: '2학기', credits: 3, status: '계획' },
+      { course: 'AI윤리', year: '2학년', semester: '2학기', credits: 3, status: '미이수' },
       { course: '철학과삶', year: '2학년', semester: '1학기', credits: 3, status: '이수' },
       { course: '미디어리터러시', year: '1학년', semester: '2학기', credits: 2, status: '이수' },
     ],
@@ -67,7 +67,7 @@ const History = () => {
                     <th scope="col">학년</th>
                     <th scope="col">학기</th>
                     <th scope="col">학점</th>
-                    <th scope="col">상태</th>
+                    <th scope="col">수강 여부</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -78,7 +78,9 @@ const History = () => {
                       <td>{row.semester}</td>
                       <td>{row.credits}</td>
                       <td>
-                        <span className="badge">{row.status}</span>
+                        <span className={`badge ${row.status === '이수' ? 'badge-yes' : row.status === '미이수' ? 'badge-no' : 'badge-plan'}`}>
+                          {row.status === '이수' ? 'YES' : row.status === '미이수' ? 'NO' : row.status}
+                        </span>
                       </td>
                     </tr>
                   ))}
