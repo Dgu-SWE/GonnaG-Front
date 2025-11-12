@@ -11,6 +11,8 @@ const completionGroups = [
       { course: '알고리즘', year: '2학년', semester: '2학기', credits: 3, status: '이수' },
       { course: '운영체제', year: '3학년', semester: '1학기', credits: 3, status: '이수' },
       { course: '소프트웨어공학', year: '3학년', semester: '2학기', credits: 3, status: '미이수' },
+      { course: '컴퓨터구조', year: '2학년', semester: '1학기', credits: 3, status: '미이수' },
+      { course: '자료구조', year: '2학년', semester: '1학기', credits: 3, status: '이수' },
     ],
   },
   {
@@ -22,6 +24,8 @@ const completionGroups = [
       { course: '알고리즘', year: '3학년', semester: '2학기', credits: 3, status: '이수' },
       { course: '머신러닝', year: '4학년', semester: '1학기', credits: 3, status: '계획' },
       { course: '캡스톤디자인', year: '4학년', semester: '2학기', credits: 3, status: '미이수' },
+      { course: '클라우드컴퓨팅', year: '4학년', semester: '1학기', credits: 3, status: '계획' },
+      { course: '빅데이터분석', year: '3학년', semester: '2학기', credits: 3, status: '미이수' },
     ],
   },
   {
@@ -33,6 +37,8 @@ const completionGroups = [
       { course: '글쓰기와토론', year: '1학년', semester: '1학기', credits: 2, status: '이수' },
       { course: '동국인의리더십', year: '1학년', semester: '2학기', credits: 2, status: '이수' },
       { course: 'AI윤리', year: '2학년', semester: '2학기', credits: 3, status: '계획' },
+      { course: '철학과삶', year: '2학년', semester: '1학기', credits: 3, status: '이수' },
+      { course: '미디어리터러시', year: '1학년', semester: '2학기', credits: 2, status: '이수' },
     ],
   },
 ];
