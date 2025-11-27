@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../api/auth';
 
 const Signin = () => {
+
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const navigate = useNavigate();
+
   const [credentials, setCredentials] = useState({
-    studentId: '',
-    password: '',
+    id: '',
+    pwd: '',
   });
 
   const handleChange = (event) => {
@@ -11,10 +19,33 @@ const Signin = () => {
     setCredentials((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // TODO: replace with real authentication request
-    console.log('signin request', credentials);
+    setError('');
+
+    // 간단한 입력값 검증
+    if (!credentials.id || !credentials.pwd) {
+      setError('아이디와 비밀번호를 모두 입력해주세요.');
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+
+      const res = await login({
+        id: credentials.id,
+        pwd: credentials.pwd,
+      });
+
+
+      alert('로그인에 성공했습니다!');
+      navigate('/main');
+    } catch (err) {
+      console.error('Signin error:', err);
+      setError(err.message || '로그인에 실패했습니다.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -37,35 +68,39 @@ const Signin = () => {
 
         <div className="signin__form-wrapper">
           <form className="signin__form" onSubmit={handleSubmit}>
-            <label className="signin__label" htmlFor="studentId">
+            <label className="signin__label" htmlFor="id">
               아이디 (학번)
             </label>
             <input
-              id="studentId"
-              name="studentId"
+              id="id"
+              name="id"
               type="text"
               placeholder="아이디를 입력하세요"
-              value={credentials.studentId}
+              value={credentials.id}
               onChange={handleChange}
               className="signin__input"
               autoComplete="username"
               required
             />
 
-            <label className="signin__label" htmlFor="password">
+            <label className="signin__label" htmlFor="pwd">
               비밀번호
             </label>
             <input
-              id="password"
-              name="password"
+              id="pwd"
+              name="pwd"
               type="password"
               placeholder="비밀번호를 입력하세요"
-              value={credentials.password}
+              value={credentials.pwd}
               onChange={handleChange}
               className="signin__input"
               autoComplete="current-password"
               required
             />
+
+            {error && (
+              <p className="signin__error">{error}</p>
+            )}
 
             <button type="submit" className="signin__button">
               로그인

@@ -304,6 +304,13 @@ body {
   background-color: #fff;
 }
 
+.signin__error {
+  color: #e53e3e;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+
 .signin__button {
   margin-top: 0;
   padding: 16px;
