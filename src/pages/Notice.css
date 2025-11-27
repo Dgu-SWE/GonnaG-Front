@@ -69,3 +69,28 @@
   font-size: 14px;
 }
 
+/* 최근 공지 테이블 (4컬럼: 번호, 제목, 날짜, 조회수) */
+.table td:nth-child(1) {
+  text-align: center;
+  padding-left: 11px;
+  padding-right: 8px;
+}
+
+.table td:nth-child(2) {
+  text-align: center;
+  padding-left: 16px;
+  padding-right: 8px;
+}
+
+.table td:nth-child(3) {
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 1px;
+}
+
+.table td:nth-child(4) {
+  text-align: center;
+  padding-left: 25px;
+  padding-right: 1px;
+}
+

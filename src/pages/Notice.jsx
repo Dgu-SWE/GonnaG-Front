@@ -15,7 +15,7 @@ const Notice = () => {
     const fetchNotices = async () => {
       try {
         // const res = await fetch('http://localhost:3005/noticeall');
-        const res = await fetch(`${API_BASE_URL}/api/history`, {
+        const res = await fetch(`${API_BASE_URL}/api/notice/all`, {
           method: 'GET',
           headers: {
             "Content-Type": "application/json",
@@ -28,7 +28,7 @@ const Notice = () => {
         }
         const json = await res.json();
         const data = json.data;
-        setRecentNotices(data.recentNotices.content);
+        setRecentNotices(data.recentNotices);
         setPopularNotices(data.popularNotices);
       } catch (err) {
         console.error('Failed to fetch notices:', err);
@@ -65,8 +65,8 @@ const Notice = () => {
               </thead>
               <tbody>
                 {recentNotices.slice(0, 5).map((notice) => (
-                  <tr key={notice.id}>
-                    <td>{notice.id}</td>
+                  <tr key={notice.originalId}>
+                    <td>{notice.announcementId}</td>
                     <td>{notice.title}</td>
                     <td>{notice.date}</td>
                     <td>{notice.viewCount}</td>
@@ -90,7 +90,7 @@ const Notice = () => {
               </thead>
               <tbody>
                 {popularNotices.slice(0, 5).map((notice) => (
-                  <tr key={notice.id}>
+                  <tr key={notice.originalId}>
                     <td>{notice.viewCount}</td>
                     <td>{notice.title}</td>
                     <td>{notice.date}</td>

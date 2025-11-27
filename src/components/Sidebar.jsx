@@ -97,7 +97,9 @@ const Sidebar = () => {
           throw new Error('API 요청 실패: ' + res.status);
         }
         const json = await res.json();
+        console.log('Notice API Response:', json);
         const data = json.data.recentNotices.content;
+        console.log('Notice Data:', data);
         setAnnouncements(data.slice(0, 4));
       } catch (err) {
         console.error('Failed to fetch notices:', err);

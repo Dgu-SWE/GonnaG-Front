@@ -1,7 +1,7 @@
 .table-wrapper {
   margin-top: 16px;
   border-radius: 16px;
-  overflow: hidden;
+  overflow: auto;
   border: 1px solid #e6e6e6;
 }
 
@@ -11,18 +11,17 @@
   border-radius: 16px;
   background-color: #fff;
   display: table;
-}
-
-.table thead {
-  display: table;
-  width: 100%;
   table-layout: fixed;
 }
 
+.table thead {
+  display: table-header-group;
+  width: 100%;
+}
+
 .table tbody {
-  display: block;
-  overflow-y: auto;
-  max-height: 148px;
+  display: table-row-group;
+  width: 100%;
 }
 
 .table thead th {
@@ -36,9 +35,8 @@
 }
 
 .table tbody tr {
-  display: table;
+  display: table-row;
   width: 100%;
-  table-layout: fixed;
 }
 
 .table th,
@@ -49,37 +47,7 @@
   font-size: 14px;
 }
 
-/* 각 컬럼별 정렬 및 패딩 조정 */
 
-.table th:nth-child(1) {
-  text-align: center;
-  padding-left: 16px;
-  padding-right: 8px;
-}
-
-.table td:nth-child(1) {
-    text-align: center;
-    padding-left: 16px;
-    padding-right: 1px;
-  }
-
-.table td:nth-child(2) {
-  text-align: center;
-  padding-left: 20px;
-  padding-right: 7px;
-}
-
-.table td:nth-child(3) {
-  text-align: center;
-  padding-left: 20px;
-  padding-right: 1px;
-}
-
-.table td:nth-child(4) {
-  text-align: center;
-  padding-left: 27px;
-  padding-right: 1px;
-}
 
 .badge {
   display: inline-flex;
@@ -105,5 +73,16 @@
 .badge-plan {
   color: #fff;
   background-color: #ff8a00;
+}
+
+/* 교양필수 테이블 */
+.table--liberal-required td:nth-child(2) {
+    padding-left: 16px;
+    padding-right: 8px;
+}
+
+.table--liberal-required td:nth-child(3) {
+    padding-left: 16px;
+    padding-right: 8px;
 }
 
