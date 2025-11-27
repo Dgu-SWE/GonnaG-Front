@@ -1,0 +1,29 @@
+{
+    "grades": {
+      "success": true,
+      "data": {
+        "totalCredits": {
+          "label": "취득학점",
+          "earned": 103,
+          "total": 140
+        },
+        "major": {
+          "label": "전공필수",
+          "earned": 20,
+          "total": 24
+        },
+        "core": {
+          "label": "필수교양",
+          "earned": 21,
+          "total": 21
+        },
+        "general": {
+          "label": "일반교양",
+          "earned": 28,
+          "total": 35
+        }
+      },
+      "error": null
+    }
+  }
+  

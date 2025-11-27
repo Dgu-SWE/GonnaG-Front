@@ -1,21 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../api/auth';
 import './Sidebar.css';
-
-const userProfile = {
-  name: '김학습',
-  studentId: '202312345',
-  major: '컴퓨터공학부',
-  email: 'study@dongguk.edu',
-};
-
-const progressMetrics = [
-  { id: 'earned', label: '취득학점', value: 103, total: 140 },
-  { id: 'mandatory', label: '전필이수', value: 5, total: 8 },
-  { id: 'elective', label: '전선이수', value: 21, total: 27 },
-  { id: 'liberal', label: '교양이수', value: 23, total: 35 },
-];
 
 const announcements = [
   { id: 1, title: 'SBS 데이터사이언스 계약학과 4기 교육생 모집 (~11/27)' },
@@ -25,10 +11,56 @@ const announcements = [
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const [progressMetrics, setProgressMetrics] = useState([]);
+  const [user, setUser] = useState({
+    name: "-",
+    id: "-",
+    major: "-",
+    year: "-",
+  });
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch('http://localhost:3002/user');
+        const json = await res.json();
+        const data = json.data;
+        setUser({
+          name: data.name,
+          id: data.id,
+          major: data.major,
+          year: data.year,
+        });
+      } catch (err) {
+        console.error('Failed to fetch user:', err);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  useEffect(() => {
+    const fetchGrades = async () => {
+      try {
+        const res = await fetch('http://localhost:3001/grades');
+        const json = await res.json();
+        const data = json.data;
+        setProgressMetrics([
+          { id: 'totalCredits', label: data.totalCredits.label, value: data.totalCredits.earned, total: data.totalCredits.total },
+          { id: 'major', label: data.major.label, value: data.major.earned, total: data.major.total },
+          { id: 'core', label: data.core.label, value: data.core.earned, total: data.core.total },
+          { id: 'general', label: data.general.label, value: data.general.earned, total: data.general.total },
+        ]);
+      } catch (err) {
+        console.error('Failed to fetch grades:', err);
+      }
+    };
+    fetchGrades();
+  }, []);
 
   const handleLogout = async () => {
     try {
       await logout();
+      localStorage.removeItem("user");
       navigate('/');
     } catch (err) {
       console.error('Logout error:', err);
@@ -41,10 +73,10 @@ const Sidebar = () => {
       <div className="sidebar__profile">
         <div className="sidebar__avatar" aria-hidden />
         <div>
-          <p className="sidebar__name">{userProfile.name}</p>
-          <p className="sidebar__meta">{userProfile.studentId}</p>
-          <p className="sidebar__meta">{userProfile.major}</p>
-          <p className="sidebar__meta">{userProfile.email}</p>
+          <p className="sidebar__name">{user.name}</p>
+          <p className="sidebar__meta">{user.id}</p>
+          <p className="sidebar__meta">{user.major}</p>
+          <p className="sidebar__meta">{user.year}학년</p>
         </div>
         <button type="button" className="sidebar__logout-btn" onClick={handleLogout}>
           로그아웃
@@ -52,7 +84,7 @@ const Sidebar = () => {
       </div>
 
       <section className="sidebar__section">
-        <h2 className="sidebar__section-title">학업현황</h2>
+        <h2 className="sidebar__section-title" onClick={() => navigate('/history')} style={{ cursor: 'pointer' }}>학업현황</h2>
         <ul className="sidebar__progress-list">
           {progressMetrics.map(({ id, label, value, total }) => {
             const percentage = Math.min(Math.round((value / total) * 100), 100);
@@ -74,7 +106,7 @@ const Sidebar = () => {
       </section>
 
       <section className="sidebar__section">
-        <h2 className="sidebar__section-title">공지사항</h2>
+        <h2 className="sidebar__section-title" onClick={() => navigate('/notice')} style={{ cursor: 'pointer' }}>공지사항</h2>
         <ul className="sidebar__notice-list">
           {announcements.map(({ id, title }) => (
             <li key={id} className="sidebar__notice-item">

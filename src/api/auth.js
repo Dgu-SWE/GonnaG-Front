@@ -62,6 +62,8 @@ export const login = async (credentials) => {
 
     const res = await response.json();
 
+    localStorage.setItem("user", JSON.stringify(res.data));
+
     if (res.accessToken) {
       localStorage.setItem("access_token", res.accessToken);
       console.log("✔ access_token saved:", res.accessToken);
