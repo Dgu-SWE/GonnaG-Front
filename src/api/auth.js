@@ -85,3 +85,11 @@ export const login = async (credentials) => {
     throw error;
   }
 };
+
+/**
+ * 로그아웃
+ */
+export const logout = () => {
+  localStorage.removeItem('access_token');
+  removeAccessToken();
+};

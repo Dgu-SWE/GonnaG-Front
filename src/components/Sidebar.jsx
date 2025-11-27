@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../api/auth';
 import './Sidebar.css';
 
 const userProfile = {
@@ -22,6 +24,18 @@ const announcements = [
 ];
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+    } catch (err) {
+      console.error('Logout error:', err);
+      navigate('/');
+    }
+  };
+
   return (
     <aside className="sidebar">
       <div className="sidebar__profile">
@@ -32,6 +46,9 @@ const Sidebar = () => {
           <p className="sidebar__meta">{userProfile.major}</p>
           <p className="sidebar__meta">{userProfile.email}</p>
         </div>
+        <button type="button" className="sidebar__logout-btn" onClick={handleLogout}>
+          로그아웃
+        </button>
       </div>
 
       <section className="sidebar__section">
