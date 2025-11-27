@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import './Main.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const Main = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
@@ -47,7 +49,7 @@ const Main = () => {
     setInputText('');
     setIsLoading(true);
 
-    // 사용자 메시지를 먼저 추가
+    // 사용자 메시지를 먼저 화면에 추가 (옵티미스틱 UI)
     const newUserMessage = {
       id: Date.now(),
       type: 'user',
@@ -56,28 +58,31 @@ const Main = () => {
     setMessages((prev) => [...prev, newUserMessage]);
 
     try {
-      // 백엔드 API 호출
-      // TODO: 실제 백엔드 API 엔드포인트로 교체하세요
-      const response = await fetch('/api/chat', {
+      // 실제 백엔드 API 엔드포인트로 교체
+      const response = await fetch(`${API_BASE_URL}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: userMessage }),
+        body: JSON.stringify({ msg: userMessage }),
       });
 
       if (!response.ok) {
         throw new Error('API 요청 실패');
       }
 
-      const data = await response.json();
-      const aiResponse = {
-        id: Date.now() + 1,
-        type: 'ai',
-        text: data.response || data.message || '응답을 받았습니다.',
-      };
+      const result = await response.json();
 
-      setMessages((prev) => [...prev, aiResponse]);
+      const history = result?.data?.history ?? [];
+
+      const formattedMessages = history.map((msg) => ({
+        id: msg.messageId,
+        type: msg.role === 'USER' ? 'user' : 'ai',
+        text: msg.content,
+      }));
+
+      // 서버에서 내려준 전체 히스토리로 상태 교체
+      setMessages(formattedMessages);
     } catch (error) {
       console.error('Error sending message:', error);
       const errorMessage = {
@@ -90,6 +95,7 @@ const Main = () => {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className="page">

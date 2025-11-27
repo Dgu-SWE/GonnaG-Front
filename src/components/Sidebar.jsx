@@ -108,7 +108,7 @@ const Sidebar = () => {
       </section>
 
       <section className="sidebar__section">
-        <h2 className="sidebar__section-title" onClick={() => navigate('/notice')} style={{ cursor: 'pointer' }}>공지사항</h2>
+        <h2 className="sidebar__section-title" onClick={() => navigate('/notice')} style={{ cursor: 'pointer' }}>학과공지</h2>
         <ul className="sidebar__notice-list">
           {announcements.map(({ id, title }) => (
             <li key={id} className="sidebar__notice-item">
