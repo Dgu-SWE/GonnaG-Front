@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../api/auth';
 import './Sidebar.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const token = localStorage.getItem("access_token");
+
 const announcements = [
   { id: 1, title: 'SBS 데이터사이언스 계약학과 4기 교육생 모집 (~11/27)' },
   { id: 2, title: '인공지능 특화캡스톤디자인 이수 요건 안내 (~11/20)' },
@@ -22,9 +25,23 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch('http://localhost:3002/user');
+
+        // const res = await fetch('http://localhost:3002/user');
+        const res = await fetch(`${API_BASE_URL}/api/user`, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+    
+        if (!res.ok) {
+          throw new Error('API 요청 실패: ' + res.status);
+        }
         const json = await res.json();
+        console.log('User API Response:', json);
         const data = json.data;
+        console.log('User Data:', data);
         setUser({
           name: data.name,
           id: data.id,
@@ -41,7 +58,19 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchGrades = async () => {
       try {
-        const res = await fetch('http://localhost:3001/grades');
+        // const res = await fetch('http://localhost:3001/grades');
+        const res = await fetch(`${API_BASE_URL}/api/progress`, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+    
+        if (!res.ok) {
+          throw new Error('API 요청 실패: ' + res.status);
+        }
+        
         const json = await res.json();
         const data = json.data;
         setProgressMetrics([

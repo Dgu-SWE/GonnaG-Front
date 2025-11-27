@@ -62,11 +62,13 @@ export const login = async (credentials) => {
 
     const res = await response.json();
 
+    console.log("res 값", res);
+
     localStorage.setItem("user", JSON.stringify(res.data));
 
-    if (res.accessToken) {
-      localStorage.setItem("access_token", res.accessToken);
-      console.log("✔ access_token saved:", res.accessToken);
+    if (res.data.accessToken) {
+      localStorage.setItem("access_token", res.data.accessToken);
+      console.log("✔ access_token saved:", res.data.cessToken);
     } else {
       console.warn(
         "⚠ 로그인 응답에 accessToken이 없습니다.",

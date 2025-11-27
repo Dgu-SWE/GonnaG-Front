@@ -74,7 +74,6 @@ const History = () => {
                     <th scope="col">학년</th>
                     <th scope="col">학기</th>
                     <th scope="col">학점</th>
-                    <th scope="col">수강 여부</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -84,11 +83,6 @@ const History = () => {
                       <td>{row.year}</td>
                       <td>{row.semester}</td>
                       <td>{row.credits}</td>
-                      <td>
-                        <span className={`badge ${row.status === '이수' ? 'badge-yes' : row.status === '미이수' ? 'badge-no' : 'badge-plan'}`}>
-                          {row.status === '이수' ? 'YES' : row.status === '미이수' ? 'NO' : row.status}
-                        </span>
-                      </td>
                     </tr>
                   ))}
                 </tbody>

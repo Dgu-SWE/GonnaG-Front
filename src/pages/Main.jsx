@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar';
 import './Main.css';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const token = localStorage.getItem("access_token");
 
 const Main = () => {
   const [messages, setMessages] = useState([]);
@@ -24,7 +25,18 @@ const Main = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await fetch('http://localhost:3003/history');
+        // const res = await fetch('http://localhost:3003/history');
+        const res = await fetch(`${API_BASE_URL}/api/chat/history`, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+    
+        if (!res.ok) {
+          throw new Error('API 요청 실패: ' + res.status);
+        }
         const json = await res.json();
         const historyData = json.data.history;
         const formattedMessages = historyData.map((msg) => ({
@@ -63,6 +75,7 @@ const Main = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ msg: userMessage }),
       });
