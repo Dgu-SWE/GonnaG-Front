@@ -37,6 +37,7 @@ const Main = () => {
         if (!res.ok) {
           throw new Error('API 요청 실패: ' + res.status);
         }
+        
         const json = await res.json();
         const historyData = json.data.history;
         const formattedMessages = historyData.map((msg) => ({

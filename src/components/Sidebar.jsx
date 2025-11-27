@@ -6,15 +6,10 @@ import './Sidebar.css';
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const token = localStorage.getItem("access_token");
 
-const announcements = [
-  { id: 1, title: 'SBS 데이터사이언스 계약학과 4기 교육생 모집 (~11/27)' },
-  { id: 2, title: '인공지능 특화캡스톤디자인 이수 요건 안내 (~11/20)' },
-  { id: 3, title: '2025 AI NoCode-MCIP Hackathon 시즌2, 캐치 (~11/16)' },
-];
-
 const Sidebar = () => {
   const navigate = useNavigate();
   const [progressMetrics, setProgressMetrics] = useState([]);
+  const [announcements, setAnnouncements] = useState([]);
   const [user, setUser] = useState({
     name: "-",
     id: "-",
@@ -84,6 +79,31 @@ const Sidebar = () => {
       }
     };
     fetchGrades();
+  }, []);
+
+  useEffect(() => {
+    const fetchNotices = async () => {
+      try {
+        // const res = await fetch('http://localhost:3004/notices');
+        const res = await fetch(`${API_BASE_URL}/api/notice`, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+    
+        if (!res.ok) {
+          throw new Error('API 요청 실패: ' + res.status);
+        }
+        const json = await res.json();
+        const data = json.data.recentNotices.content;
+        setAnnouncements(data.slice(0, 4));
+      } catch (err) {
+        console.error('Failed to fetch notices:', err);
+      }
+    };
+    fetchNotices();
   }, []);
 
   const handleLogout = async () => {
