@@ -65,3 +65,17 @@ body {
   color: #7a7a7a;
 }
 
+.back-button {
+  background: none;
+  border: none;
+  color: #ff8a00;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+

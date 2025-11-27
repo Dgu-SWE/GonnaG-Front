@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import './Notice.css';
 
@@ -22,6 +23,8 @@ const popularNotices = [
 ];
 
 const Notice = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="page">
       <Sidebar />
@@ -31,6 +34,9 @@ const Notice = () => {
             <h1 className="page-title">공지사항</h1>
             <p className="page-subtitle">학과 소식과 챗봇 업데이트를 확인하세요.</p>
           </div>
+          <button className="back-button" onClick={() => navigate('/main')}>
+            채팅으로 돌아가기
+          </button>
         </header>
 
         <section className="page-card">

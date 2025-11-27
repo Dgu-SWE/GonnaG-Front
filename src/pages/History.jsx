@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import './History.css';
 
@@ -45,6 +46,8 @@ const completionGroups = [
 ];
 
 const History = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="page">
       <Sidebar />
@@ -54,6 +57,9 @@ const History = () => {
             <h1 className="page-title">수강 이력 조회</h1>
             <p className="page-subtitle">이수 여부와 남은 과목을 살펴보세요.</p>
           </div>
+          <button className="back-button" onClick={() => navigate('/main')}>
+            채팅으로 돌아가기
+          </button>
         </header>
 
         {completionGroups.map((group) => (

@@ -71,7 +71,9 @@ const Sidebar = () => {
   return (
     <aside className="sidebar">
       <div className="sidebar__profile">
-        <div className="sidebar__avatar" aria-hidden />
+        <div className="sidebar__avatar" aria-hidden>
+          <img src="/assets/images/아코.png" alt="아코" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }} />
+        </div>
         <div>
           <p className="sidebar__name">{user.name}</p>
           <p className="sidebar__meta">{user.id}</p>

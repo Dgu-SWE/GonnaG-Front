@@ -18,6 +18,26 @@ const Main = () => {
     scrollToBottom();
   }, [messages]);
 
+  // 채팅 히스토리 불러오기
+  useEffect(() => {
+    const fetchHistory = async () => {
+      try {
+        const res = await fetch('http://localhost:3003/history');
+        const json = await res.json();
+        const historyData = json.data.history;
+        const formattedMessages = historyData.map((msg) => ({
+          id: msg.messageId,
+          type: msg.role === 'USER' ? 'user' : 'ai',
+          text: msg.content,
+        }));
+        setMessages(formattedMessages);
+      } catch (err) {
+        console.error('Failed to fetch history:', err);
+      }
+    };
+    fetchHistory();
+  }, []);
+
   // 백엔드로 메시지 전송
   const sendMessage = async (e) => {
     e.preventDefault();

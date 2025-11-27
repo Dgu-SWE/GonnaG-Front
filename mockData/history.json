@@ -1,0 +1,28 @@
+{
+    "history": {
+        "success": true,
+        "data": {
+            "history": [
+            {
+                "messageId": 1,
+                "role": "USER",
+                "content": "나 졸업하려면 학점 얼마나 남았어?",
+                "createdAt": "2025-11-27T10:00:00"
+            },
+            {
+                "messageId": 2,
+                "role": "ASSISTANT",
+                "content": "현재 이재혁님의 남은 학점은 37학점입니다. 전공필수가 부족하니 확인해보세요!",
+                "createdAt": "2025-11-27T10:00:05"
+            },
+            {
+                "messageId": 3,
+                "role": "USER",
+                "content": "그럼 무슨 과목 들어야 해?",
+                "createdAt": "2025-11-27T10:01:00"
+            }
+            ]
+        },
+  "error": null
+    }
+}
