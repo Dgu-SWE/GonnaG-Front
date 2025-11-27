@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
+import './Notice.css';
 
 const pinnedNotices = [
   { id: 1, title: 'SBS 데이터사이언스 계약학과 4기 교육생 모집 공지', date: '2024-10-28' },

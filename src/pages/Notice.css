@@ -1,0 +1,20 @@
+.page-card {
+  border-radius: 16px;
+  border: 1px solid #e6e6e6;
+  padding: 24px;
+  background-color: #fff8ec;
+}
+
+.page-card__title {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.page-card__description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+

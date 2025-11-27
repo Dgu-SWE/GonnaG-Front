@@ -1,0 +1,118 @@
+.table-wrapper {
+  margin-top: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e6e6e6;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 16px;
+  background-color: #fff;
+  display: table;
+}
+
+.table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table tbody {
+  display: block;
+  overflow-y: auto;
+  max-height: 148px;
+}
+
+.table thead th {
+  background-color: #f8f0ff;
+  font-weight: 600;
+  color: #51368a;
+  padding: 12px 8px;
+  text-align: center;
+  border-bottom: 1px solid #ececec;
+  font-size: 14px;
+}
+
+.table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ececec;
+  font-size: 14px;
+}
+
+/* 각 컬럼별 정렬 및 패딩 조정 */
+.table th:nth-child(1),
+.table td:nth-child(1) {
+  text-align: center;
+  padding-left: 16px;
+  padding-right: 1px;
+}
+
+.table th:nth-child(2),
+.table th:nth-child(3),
+.table th:nth-child(4),
+.table th:nth-child(5) {
+  text-align: center;
+  padding-left: 1px;
+  padding-right: 8px;
+}
+
+.table td:nth-child(2) {
+  text-align: center;
+  padding-left: 8px;
+  padding-right: 7px;
+}
+
+.table td:nth-child(3) {
+  text-align: center;
+  padding-left: 8px;
+  padding-right: 1px;
+}
+
+.table td:nth-child(4) {
+  text-align: center;
+  padding-left: 13px;
+  padding-right: 1px;
+}
+
+.table td:nth-child(5) {
+  text-align: center;
+  padding-left: 17px;
+  padding-right: 1px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.badge-yes {
+  color: #0066ff;
+  background-color: #e6f2ff;
+}
+
+.badge-no {
+  color: #ff0000;
+  background-color: #ffe6e6;
+}
+
+.badge-plan {
+  color: #fff;
+  background-color: #ff8a00;
+}
+
