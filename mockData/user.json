@@ -1,0 +1,14 @@
+{
+    "user": {
+      "success": true,
+      "data": {
+        "id": 2021111971,
+        "name": "이재혁",
+        "year": 1,
+        "department": "컴퓨터공학과",
+        "major": "컴퓨터공학전공",
+        "track": "심화과정"
+      },
+      "error": null
+    }
+  }

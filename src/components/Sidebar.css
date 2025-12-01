@@ -5,17 +5,18 @@
 .sidebar {
   width: 260px;
   min-width: 260px;
-  max-height: calc(100vh - 20px);
+  height: calc(100vh - 20px);
   background-color: #ff8a00;
   color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 28px 20px;
+  gap: 16px;
+  padding: 20px;
   border-radius: 20px;
   position: sticky;
   top: 10px;
   align-self: flex-start;
+  overflow-y: auto;
 }
 
 .sidebar__profile {
@@ -25,6 +26,26 @@
   background-color: rgba(255, 255, 255, 0.18);
   border-radius: 16px;
   padding: 16px;
+  position: relative;
+}
+
+.sidebar__logout-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar__logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .sidebar__avatar {
@@ -47,6 +68,9 @@
 }
 
 .sidebar__section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   background-color: rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   padding: 20px;
@@ -64,7 +88,8 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .sidebar__progress-item {
@@ -94,13 +119,18 @@
   background: linear-gradient(90deg, #90EE90, #98FB98);
 }
 
+.sidebar__progress-value--over {
+  background: linear-gradient(90deg, #94d1eb) !important;
+}
+
 .sidebar__notice-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .sidebar__notice-item {
