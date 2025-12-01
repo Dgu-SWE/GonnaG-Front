@@ -66,10 +66,21 @@ const Notice = () => {
                 </tr>
               </thead>
               <tbody className="custom-scroll">
-                {recentNotices.slice(0, 5).map((notice) => (
-                  <tr key={notice.originalId}>
+                {recentNotices.slice(0, 10).map((notice) => (
+                  <tr key={notice.announcementId}>
                     <td>{notice.announcementId}</td>
-                    <td>{notice.title}</td>
+                    <td>
+                      <a 
+                        href={notice.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{ color: '#222', textDecoration: 'none', cursor: 'pointer' }}
+                        onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
+                        onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+                      >
+                        {notice.title}
+                      </a>
+                    </td>
                     <td>{notice.date}</td>
                     <td>{notice.viewCount}</td>
                   </tr>
@@ -92,9 +103,20 @@ const Notice = () => {
               </thead>
               <tbody>
                 {popularNotices.slice(0, 5).map((notice) => (
-                  <tr key={notice.originalId}>
+                  <tr key={notice.announcementId}>
                     <td>{notice.viewCount}</td>
-                    <td>{notice.title}</td>
+                    <td>
+                      <a 
+                        href={notice.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{ color: '#222', textDecoration: 'none', cursor: 'pointer' }}
+                        onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
+                        onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+                      >
+                        {notice.title}
+                      </a>
+                    </td>
                     <td>{notice.date}</td>
                   </tr>
                 ))}
