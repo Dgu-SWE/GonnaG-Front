@@ -14,23 +14,31 @@ const Main = () => {
 
   // 스크롤을 맨 아래로 이동
   const scrollToBottom = () => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatContainerRef.current) {
+      // requestAnimationFrame을 사용하여 DOM 업데이트 후 스크롤
+      requestAnimationFrame(() => {
+        if (chatContainerRef.current) {
+          chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+      });
+    }
   };
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, isLoading]);
 
   // 채팅 히스토리 불러오기
   useEffect(() => {
     const fetchHistory = async () => {
       try {
         // const res = await fetch('http://localhost:3003/history');
+        const currentToken = localStorage.getItem("access_token");
         const res = await fetch(`${API_BASE_URL}/api/chat/history`, {
           method: 'GET',
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         });
     
@@ -51,7 +59,7 @@ const Main = () => {
       }
     };
     fetchHistory();
-  }, []);
+  }, [token]);
 
   // 백엔드로 메시지 전송
   const sendMessage = async (e) => {
@@ -71,12 +79,12 @@ const Main = () => {
     setMessages((prev) => [...prev, newUserMessage]);
 
     try {
-      // 실제 백엔드 API 엔드포인트로 교체
+      const currentToken = localStorage.getItem("access_token");
       const response = await fetch(`${API_BASE_URL}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${currentToken}`,
         },
         body: JSON.stringify({ msg: userMessage }),
       });

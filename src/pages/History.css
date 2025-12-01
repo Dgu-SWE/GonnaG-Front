@@ -1,7 +1,7 @@
 .table-wrapper {
   margin-top: 16px;
   border-radius: 16px;
-  overflow: auto;
+  /* overflow: auto; */
   border: 1px solid #e6e6e6;
 }
 
@@ -15,14 +15,25 @@
 }
 
 .table thead {
-  display: table-header-group;
+  display: table;
   width: 100%;
+  table-layout: fixed;
 }
 
 .table tbody {
-  display: table-row-group;
-  width: 100%;
+  display: block;
+  max-height: 220px;        
+  overflow-y: auto;         
+  scrollbar-gutter: stable; 
 }
+
+
+.table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
 
 .table thead th {
   background-color: #f8f0ff;
@@ -32,11 +43,6 @@
   text-align: center;
   border-bottom: 1px solid #ececec;
   font-size: 14px;
-}
-
-.table tbody tr {
-  display: table-row;
-  width: 100%;
 }
 
 .table th,
@@ -75,14 +81,16 @@
   background-color: #ff8a00;
 }
 
-/* 교양필수 테이블 */
-.table--liberal-required td:nth-child(2) {
-    padding-left: 16px;
-    padding-right: 8px;
+/* 교양필수: 가운데 정렬 강제 */
+.table--liberal-required td {
+  text-align: center !important;
 }
 
-.table--liberal-required td:nth-child(3) {
-    padding-left: 16px;
-    padding-right: 8px;
+/* MSC: 가운데 정렬 */
+.table--msc td {
+  text-align: center !important;
 }
 
+.table td:nth-child(2) {
+  padding-right: 5px !important; /* 학점과 동일하게 */
+}

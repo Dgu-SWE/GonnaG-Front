@@ -17,6 +17,9 @@ const Sidebar = () => {
     year: "-",
   });
 
+  // token을 컴포넌트 내부에서 읽기
+  const token = localStorage.getItem("access_token");
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -48,7 +51,7 @@ const Sidebar = () => {
       }
     };
     fetchUser();
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     const fetchGrades = async () => {
@@ -79,7 +82,7 @@ const Sidebar = () => {
       }
     };
     fetchGrades();
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     const fetchNotices = async () => {
@@ -106,7 +109,7 @@ const Sidebar = () => {
       }
     };
     fetchNotices();
-  }, []);
+  }, [token]);
 
   const handleLogout = async () => {
     try {
@@ -141,6 +144,7 @@ const Sidebar = () => {
         <ul className="sidebar__progress-list">
           {progressMetrics.map(({ id, label, value, total }) => {
             const percentage = Math.min(Math.round((value / total) * 100), 100);
+            const isOverLimit = value > total;
             return (
               <li key={id} className="sidebar__progress-item">
                 <div className="sidebar__progress-label">
@@ -150,7 +154,10 @@ const Sidebar = () => {
                   </span>
                 </div>
                 <div className="sidebar__progress-bar" role="progressbar" aria-valuenow={percentage} aria-valuemin="0" aria-valuemax="100">
-                  <div className="sidebar__progress-value" style={{ width: `${percentage}%` }} />
+                  <div 
+                    className={`sidebar__progress-value ${isOverLimit ? 'sidebar__progress-value--over' : ''}`}
+                    style={{ width: `${percentage}%` }} 
+                  />
                 </div>
               </li>
             );

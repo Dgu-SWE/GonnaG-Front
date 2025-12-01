@@ -73,7 +73,7 @@ const History = () => {
                       <th scope="col">영어과목여부</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody className="custom-scroll">
                     {filtered.length > 0 ? (
                       filtered.map((item) => (
                         <tr key={item.transcriptId}>

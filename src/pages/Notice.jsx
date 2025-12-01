@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
-import './Notice.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
+import "./Notice.css";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const token = localStorage.getItem("access_token");
@@ -14,7 +14,7 @@ const Notice = () => {
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        // const res = await fetch('http://localhost:3005/noticeall');
+        //const res = await fetch("http://localhost:3005/noticeall");
         const res = await fetch(`${API_BASE_URL}/api/notice/all`, {
           method: 'GET',
           headers: {
@@ -22,7 +22,7 @@ const Notice = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-    
+
         if (!res.ok) {
           throw new Error('API 요청 실패: ' + res.status);
         }
@@ -31,7 +31,7 @@ const Notice = () => {
         setRecentNotices(data.recentNotices);
         setPopularNotices(data.popularNotices);
       } catch (err) {
-        console.error('Failed to fetch notices:', err);
+        console.error("Failed to fetch notices:", err);
       }
     };
     fetchNotices();
@@ -44,9 +44,11 @@ const Notice = () => {
         <header className="page-header">
           <div>
             <h1 className="page-title">공지사항</h1>
-            <p className="page-subtitle">학과 소식과 챗봇 업데이트를 확인하세요.</p>
+            <p className="page-subtitle">
+              학과 소식과 챗봇 업데이트를 확인하세요.
+            </p>
           </div>
-          <button className="back-button" onClick={() => navigate('/main')}>
+          <button className="back-button" onClick={() => navigate("/main")}>
             채팅으로 돌아가기
           </button>
         </header>
@@ -63,7 +65,7 @@ const Notice = () => {
                   <th scope="col">조회수</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="custom-scroll">
                 {recentNotices.slice(0, 5).map((notice) => (
                   <tr key={notice.originalId}>
                     <td>{notice.announcementId}</td>
