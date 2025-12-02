@@ -168,9 +168,17 @@ const Sidebar = () => {
       <section className="sidebar__section">
         <h2 className="sidebar__section-title" onClick={() => navigate('/notice')} style={{ cursor: 'pointer' }}>학과공지</h2>
         <ul className="sidebar__notice-list">
-          {announcements.map(({ id, title }) => (
-            <li key={id} className="sidebar__notice-item">
-              <button type="button" className="sidebar__notice-button">
+          {announcements.map(({ announcementId, title, link }) => (
+            <li key={announcementId} className="sidebar__notice-item">
+              <button 
+                type="button" 
+                className="sidebar__notice-button"
+                onClick={() => {
+                  if (link) {
+                    window.open(link, '_blank', 'noopener,noreferrer');
+                  }
+                }}
+              >
                 {title}
               </button>
             </li>
