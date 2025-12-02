@@ -4,7 +4,6 @@ import Sidebar from '../components/Sidebar';
 import './History.css';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-const token = localStorage.getItem("access_token");
 
 // courseType 매핑
 const courseTypeMap = {
@@ -18,15 +17,17 @@ const courseTypeMap = {
 const History = () => {
   const navigate = useNavigate();
   const [transcripts, setTranscripts] = useState([]);
+  const token = localStorage.getItem("access_token");
 
   useEffect(() => {
     const fetchHistory = async () => {
       try {
+        const currentToken = localStorage.getItem("access_token");
         const res = await fetch(`${API_BASE_URL}/api/history`, {
           method: 'GET',
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         });
 
@@ -42,7 +43,7 @@ const History = () => {
       }
     };
     fetchHistory();
-  }, []);
+  }, [token]);
 
   return (
     <div className="page">
