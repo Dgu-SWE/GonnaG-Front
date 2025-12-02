@@ -1,0 +1,92 @@
+{
+        "notices": {
+            "success": true,
+            "data": {
+            "recentNotices": {
+                "content": [
+                {
+                    "id": 1,
+                    "originalId": 96,
+                    "title": "[장학] 2025학년도 4-4분기 장학금 배정...",
+                    "date": "2025-10-28",
+                    "viewCount": 250,
+                    "link": "https://school.site/notice_view.jsp?id=96"
+                },
+                {
+                    "id": 2,
+                    "originalId": 95,
+                    "title": "[중요] AI/MLCP Hackathon...",
+                    "date": "2025-10-24",
+                    "viewCount": 1050,
+                    "link": "https://school.site/notice_view.jsp?id=95"
+                },
+                {
+                    "id": 3,
+                    "originalId": 94,
+                    "title": "[학사] 2026-1학기 수강신청 안내",
+                    "date": "2025-10-24",
+                    "viewCount": 780,
+                    "link": "https://school.site/notice_view.jsp?id=94"
+                },
+                {
+                    "id": 4,
+                    "originalId": 93,
+                    "title": "[국제] 2026 하계 교환학생 설명회",
+                    "date": "2025-10-23",
+                    "viewCount": 430,
+                    "link": "https://school.site/notice_view.jsp?id=93"
+                },
+                {
+                    "id": 5,
+                    "originalId": 92,
+                    "title": "[행사] 2025 가을 축제 부스 배치도",
+                    "date": "2025-10-22",
+                    "viewCount": 990,
+                    "link": "https://school.site/notice_view.jsp?id=92"
+                },
+                {
+                    "id": 6,
+                    "originalId": 91,
+                    "title": "[기타] 중앙도서관 10월 휴관일",
+                    "date": "2025-10-21",
+                    "viewCount": 150,
+                    "link": "https://school.site/notice_view.jsp?id=91"
+                },
+                {
+                    "id": 7,
+                    "originalId": 90,
+                    "title": "[취업] 2025 하반기 삼성전자 면접 특강",
+                    "date": "2025-10-21",
+                    "viewCount": 610,
+                    "link": "https://school.site/notice_view.jsp?id=90"
+                },
+                {
+                    "id": 8,
+                    "originalId": 89,
+                    "title": "[봉사] 2025 동계 해외봉사단 모집",
+                    "date": "2025-10-20",
+                    "viewCount": 320,
+                    "link": "https://school.site/notice_view.jsp?id=89"
+                },
+                {
+                    "id": 9,
+                    "originalId": 88,
+                    "title": "[필독] 2026학년도 1학기 수강신청 최종 안내",
+                    "date": "2025-10-20",
+                    "viewCount": 1204,
+                    "link": "https://school.site/notice_view.jsp?id=88"
+                },
+                {
+                    "id": 10,
+                    "originalId": 87,
+                    "title": "[기숙사] 2026-1학기 입사 신청",
+                    "date": "2025-10-19",
+                    "viewCount": 850,
+                    "link": "https://school.site/notice_view.jsp?id=87"
+                }
+                ]
+            },
+            "error": null
+        }
+    }
+}
