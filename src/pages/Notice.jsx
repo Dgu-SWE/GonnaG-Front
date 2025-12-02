@@ -4,22 +4,23 @@ import Sidebar from "../components/Sidebar";
 import "./Notice.css";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-const token = localStorage.getItem("access_token");
 
 const Notice = () => {
   const navigate = useNavigate();
   const [recentNotices, setRecentNotices] = useState([]);
   const [popularNotices, setPopularNotices] = useState([]);
+  const token = localStorage.getItem("access_token");
 
   useEffect(() => {
     const fetchNotices = async () => {
       try {
+        const currentToken = localStorage.getItem("access_token");
         //const res = await fetch("http://localhost:3005/noticeall");
         const res = await fetch(`${API_BASE_URL}/api/notice/all`, {
           method: 'GET',
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         });
 
@@ -35,7 +36,7 @@ const Notice = () => {
       }
     };
     fetchNotices();
-  }, []);
+  }, [token]);
 
   return (
     <div className="page">
