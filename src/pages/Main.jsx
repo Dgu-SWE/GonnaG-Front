@@ -1,3 +1,5 @@
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import React, { useState, useRef, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import './Main.css';
@@ -138,8 +140,15 @@ const Main = () => {
                 key={message.id}
                 className={`chat-message ${message.type === 'user' ? 'chat-message--user' : 'chat-message--ai'}`}
               >
-                <div className="chat-message__bubble">
+                {/* <div className="chat-message__bubble">
                   <p className="chat-message__text">{message.text}</p>
+                </div> */}
+                <div className="chat-message__bubble">
+                  <div className="chat-message__text">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {message.text}
+                    </ReactMarkdown>
+                  </div>
                 </div>
               </div>
             ))
